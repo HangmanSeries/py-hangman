@@ -1,0 +1,12 @@
+colorama
+requests
+cerberus
+pyyaml
+inquirerpy 
+cryptography 
+maskpass
+wget
+
+# psycopg2
+
+# mysql-connector-python

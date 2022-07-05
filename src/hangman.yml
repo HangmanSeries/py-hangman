@@ -1,0 +1,3 @@
+# mininum of 3, maximum of 15
+lives: 10
+db: sqlite # do not modify this value

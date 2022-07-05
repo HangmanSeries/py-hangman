@@ -1,0 +1,18 @@
+# venv
+Lib
+Scripts
+
+# generated folders
+__pycache__
+.hangman
+
+# PyCharm
+.idea/*
+!.idea/inspectionProfiles/
+.idea/inspectionProfiles/Project_Default.xml
+
+# Spyder
+.spyproject
+
+# files
+*.db
