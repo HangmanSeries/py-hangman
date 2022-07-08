@@ -1,5 +1,6 @@
 from colorama import Fore, Style, init
 from .utils import WordGenerator, ConfigLoader
+from .scoring import *
 from string import ascii_letters
 from platform import system
 # from .prompts import 
@@ -21,9 +22,13 @@ async def load_config():
   config = ConfigLoader()
   config.ensure_config()
 
-async def main():
+async def main(user):
   await generate()
   await load_config()
+  print(f"Welcome {user}")
+  # points
+  points = 0
+
   # returns a set (just like list but no duplicates (easy hack))
   def indices(word, letter):
     indices = set()
@@ -127,6 +132,8 @@ async def main():
     # letter not in chosen word
     elif letter_input not in word:
       print("wrong letter :P")
+      print("-100 points :P")
+      points = wrong_answer(points)
       if letter_input not in wrong_letters:
         lives -= 1
         wrong_letters.append(letter_input)
@@ -136,6 +143,8 @@ async def main():
       # if letter not in guessed letters
       if letter_input not in guessed_letters:
         print("letter guessed!")
+        print("+100 points :)")
+        points = correct_answer(points)
         guessed_letters[word.index(letter_input)] = letter_input
 
         # if a letter has more than two characters on a word

@@ -14,5 +14,5 @@ try:
   	get("https://raw.githubusercontent.com/imsky/wordlists/master/nouns/fruit.txt").text.split()
     # ['apple', 'banana']
 except ConnectionError:
-  print("It seems you're offline.")
+  print("It seems you're offline. Check your connection.")
   exit()

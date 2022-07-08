@@ -1,4 +1,4 @@
-from .sql import get_users, create_user_account
+from .sql import get_users, create_user_account, fetch_info
 from maskpass import advpass
 from cerberus import Validator
 from .cerberus_schemas import password_schema, username_schema
@@ -10,9 +10,10 @@ def login():
 	if users:
 		while True:
 			user = input("Enter username: ")
+			data = fetch_info(user)
 			if user == 'exit':
 				exit()
-			og = "clarkclark"
+			og = data['password']
 			password = advpass("Enter password: ")
 			if password != og:
 				print("Wrong password")

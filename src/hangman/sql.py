@@ -9,8 +9,21 @@ def get_users() -> list:
 	return users_list # return list
 
 def create_user_account(user, password):
-	cur.execute("insert into users (username, password) values (?, ?)", (user, password))
+	cur.execute("insert into users (username, password, highscore) values (?, ?, ?)", (user, password, 0))
 	db.commit()
+
+def fetch_info(user):
+	data = cur.execute(f"select * from users where username = '{user}'").fetchone()
+	return {
+		"user": data['username'],
+		"password": data['password'],
+		"highscore": data['highscore']
+	}
+
+def is_highscore(user, score):
+	data = fetch_info(user)
+	if score > data['highscore']:
+		cur.execute(f"update users set highscore = {score} where username = {user}")
 
 # ---------- atexit functions -----------
 
